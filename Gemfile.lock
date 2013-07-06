@@ -1,0 +1,27 @@
+GEM
+  specs:
+    ansi (1.4.3)
+    columnize (0.3.6)
+    debugger (1.6.0)
+      columnize (>= 0.3.1)
+      debugger-linecache (~> 1.2.0)
+      debugger-ruby_core_source (~> 1.2.1)
+    debugger-linecache (1.2.0)
+    debugger-ruby_core_source (1.2.2)
+    metaclass (0.0.1)
+    mocha (0.14.0)
+      metaclass (~> 0.0.1)
+    rake (10.0.4)
+    turn (0.9.6)
+      ansi
+    watchr (0.7)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  debugger
+  mocha
+  rake
+  turn
+  watchr
