@@ -77,7 +77,7 @@ class DrawerInterfaceTest < Test::Unit::TestCase
       @drawer.open
       @interface = DrawerInterface.new(@drawer)
       res = @interface.process("1")
-      assert_equal :drawer, res.keys.first
+      assert_equal({drawer: :closed}, res)
     end
 
     def test_process_when_open_action_place_valid_position
@@ -107,7 +107,6 @@ class DrawerInterfaceTest < Test::Unit::TestCase
 
     def test_process_when_open_action_remove
       @drawer.open
-      @drawer.stubs(:list_content).returns("drawer content is listed")
       @drawer.expects(:remove).with("red socks").returns(true)
       @interface = DrawerInterface.new(@drawer)
       @interface.stubs(:prompt_user_for_input).returns("red socks")
@@ -117,7 +116,6 @@ class DrawerInterfaceTest < Test::Unit::TestCase
     
     def test_process_when_open_action_remove_fails
       @drawer.open
-      @drawer.stubs(:list_content).returns("drawer content is listed")
       @drawer.expects(:remove).with("red socks").returns(false)
       @interface = DrawerInterface.new(@drawer)
       @interface.stubs(:prompt_user_for_input).returns("red socks")
@@ -127,7 +125,6 @@ class DrawerInterfaceTest < Test::Unit::TestCase
     
     def test_process_when_open_action_remove_prompts_for_user_input
       @drawer.open
-      @drawer.stubs(:list_content).returns("drawer content is listed")
       @drawer.stubs(:remove).with("red socks").returns(true)
       @interface = DrawerInterface.new(@drawer)
       @interface.expects(:prompt_user_for_input).returns("red socks")
@@ -140,7 +137,21 @@ class DrawerInterfaceTest < Test::Unit::TestCase
       res = @interface.process("C")
       assert_equal :cabinet, res.keys.first
     end
-    
+   
+    def test_process_when_closed_action_open
+      @drawer.close
+      @interface = DrawerInterface.new(@drawer)
+      res = @interface.process("1")
+      assert_equal({drawer: :open}, res)
+    end
+
+    def test_process_when_open_action_back_to_cabinet
+      @drawer.close
+      @interface = DrawerInterface.new(@drawer)
+      res = @interface.process("C")
+      assert_equal :cabinet, res.keys.first
+    end
+   
     def test_process_when_closed_invalid_selection
       @drawer.close
       @interface = DrawerInterface.new(@drawer)

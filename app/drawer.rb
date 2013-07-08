@@ -51,10 +51,15 @@ class Drawer
   # item removal is still performed using the full item name; not the index reference
   # 
   def list_content(itemized = false)
-    if(itemized)
+    if(@drawer_contents.length == 0)
+      "(empty)"
+
+    elsif(itemized)
       @drawer_contents.map.with_index{|item, i| "#{i+1}. '#{item}'"}
+
     else
-      @drawer_contents.join(", ")
+      #@drawer_contents.join(", ")
+      @drawer_contents.inspect
     end
   end
 
@@ -63,13 +68,30 @@ class Drawer
   # else return nil to indicate the item was not removed from drawer
   # 
   def remove(thing_to_remove)
-    if (is_open?)
-      @drawer_contents.delete(thing_to_remove)
-      return thing_to_remove
+    if(is_open?)
+      if(thing_to_remove.is_a?(Integer) and thing_to_remove > 0 and thing_to_remove < @drawer_contents.length)
+        @drawer_contents.delete_at((thing_to_remove-1))
+        return thing_to_remove
+
+      elsif (thing_to_remove.is_a?(String) and (thing_to_remove.length > 0) and @drawer_contents.find{|item| item =~ Regexp.new(thing_to_remove)})
+        @drawer_contents.delete(thing_to_remove)
+        return thing_to_remove
+      end
+
     else
       return nil
     end
   end
 
+  def item_at(position)
+    if(position and position.is_a?(Integer) and position > 0 and position <= contents.length)
+      # subtract one because our array is zero-based
+      contents[(position-1)]
+
+    else
+      raise "there is no content at position #{position}; please try a value between and including 1 and #{contents.length}"
+    end
+  end
+  
 end
 
