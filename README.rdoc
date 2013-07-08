@@ -1,3 +1,10 @@
+=== Setup
+This small Ruby app uses bundler, so we need to get it set up so the application knows where to find the right resources.
+
+    git clone git@github.com:dcvezzani/laughing-wallhack.git cabinet
+    cd cabinet
+    bundle install
+
 === Test
 Run the unit tests.  Ctrl-C to run all tests.  Otherwise, as you save each test or associated file, the suite of unit tests for that file will be run.
 Run this command in a separate window.  It uses watchr to monitor files and run tests automatically.
