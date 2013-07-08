@@ -4,6 +4,9 @@ require './app/drawer_interface'
 # ########################################################################################
 class UserInterface
 
+  USE_DEFAULTS = true
+  VERSION = "0.0.2"
+
   def initialize(cabinet = nil)
     @cabinet_interface = CabinetInterface.new(cabinet)
     @navigator = @cabinet_interface
@@ -21,9 +24,17 @@ class UserInterface
     end
   end
 
-  def self.start
-    puts "Cabinet Interface (0.0.1)
+  def self.fill_drawers_with_default_items(cabinet)
+    cabinet.drawers[0] = Drawer.new(Drawer::OPEN, ["red socks"])
+    cabinet.drawers[1] = Drawer.new
+    cabinet.drawers[2] = Drawer.new(Drawer::OPEN, ["blue pants", "pink shirt", "dirty shoes"])
+  end
+
+  def self.start(use_defaults = false)
+    puts "
+Cabinet Interface (#{VERSION})
 ##################################
+(Ctrl-C to quit)
 
 You have clothes to put away and need a cabinet?  No problem.  
 Let's get started!
@@ -41,10 +52,7 @@ How many drawers do you need?
 Ok.  You're all set.  Enjoy!"
 
     cabinet = Cabinet.new(number_of_drawers.to_i)
-    cabinet.drawers[0] = Drawer.new(Drawer::OPEN, ["red socks"])
-    cabinet.drawers[1] = Drawer.new
-    cabinet.drawers[2] = Drawer.new(Drawer::OPEN, ["blue pants", "pink shirt", "dirty shoes"])
-
+    UserInterface.fill_drawers_with_default_items(cabinet) if use_defaults
     runner = UserInterface.new(cabinet).start
   end
 
@@ -115,4 +123,7 @@ Ok.  You're all set.  Enjoy!"
 
 end
 
-UserInterface.start
+if(ARGV.length > 0 and ARGV[0] == "start")
+ARGV.clear
+UserInterface.start(UserInterface::USE_DEFAULTS)
+end

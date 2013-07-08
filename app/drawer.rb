@@ -58,8 +58,8 @@ class Drawer
       @drawer_contents.map.with_index{|item, i| "#{i+1}. '#{item}'"}
 
     else
-      #@drawer_contents.join(", ")
-      @drawer_contents.inspect
+      @drawer_contents.join(", ")
+      #@drawer_contents.inspect
     end
   end
 

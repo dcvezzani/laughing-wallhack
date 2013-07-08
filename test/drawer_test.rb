@@ -74,24 +74,5 @@ EOL
     	assert_equal "red_socks", removed_item
     end
 
-    def test_
-    	drawer = Drawer.new()
-    	#assert_equal drawer.contents, [1,2,3]
-    end
-
-    def test_
-    	drawer = Drawer.new()
-    	#assert_equal drawer.contents, [1,2,3]
-    end
-
-    def test_
-    	drawer = Drawer.new()
-    	#assert_equal drawer.contents, [1,2,3]
-    end
-
-    def test_
-    	drawer = Drawer.new()
-    	#assert_equal drawer.contents, [1,2,3]
-    end
 end
 

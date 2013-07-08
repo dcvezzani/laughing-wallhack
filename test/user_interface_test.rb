@@ -89,7 +89,7 @@ class UserInterfaceTest < Test::Unit::TestCase
       @interface.route({error: msg})
     end
 
-    def test_route_with_hash_res_and_navigator_drawer_interface
+    def test_route_with_hash_res_and_navigator_drawer_interface_check_interface_type
       @interface = UserInterface.new(@cabinet).extend(UserInterfaceTestExtention)
       #@interface.navigator = DrawerInterface.new
       @interface.navigator.expects(:is_a?).with(DrawerInterface).returns(true)

@@ -22,10 +22,6 @@ class DrawerInterfaceTest < Test::Unit::TestCase
       assert_nothing_raised{ @interface.process('C') }
     end
 
-    def test_implements_method_process
-      
-    end
-
     def test_process_when_open_action_drawer_in_range
       res = @interface.process("1")
       assert_equal :drawer, res.keys.first
