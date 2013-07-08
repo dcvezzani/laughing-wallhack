@@ -1,0 +1,10 @@
+=== Test
+Run the unit tests.  Ctrl-C to run all tests.  Otherwise, as you save each test or associated file, the suite of unit tests for that file will be run.
+Run this command in a separate window.  It uses watchr to monitor files and run tests automatically.
+
+    ./test.sh
+
+=== Run
+Start running the interface for the cabinet.
+
+    ./start.sh
