@@ -15,3 +15,7 @@ Run this command in a separate window.  It uses watchr to monitor files and run 
 Start running the interface for the cabinet.
 
     ./start.sh
+
+=== Advantages of an MVC-like architecture
+
+link:./advantages-of-mvc-like-structure.png
