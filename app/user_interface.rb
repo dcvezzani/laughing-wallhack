@@ -123,6 +123,7 @@ Ok.  You're all set.  Enjoy!"
 
 end
 
+system("clear")
 if(ARGV.length > 0 and ARGV[0] == "start")
 ARGV.clear
 UserInterface.start(UserInterface::USE_DEFAULTS)
