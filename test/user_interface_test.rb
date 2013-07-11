@@ -56,12 +56,12 @@ class UserInterfaceTest < Test::Unit::TestCase
     end
 
     def test_report_with_hash_res_info
-      @interface.stubs(:print).with(msg)
+      @interface.expects(:print).with(msg)
       @interface.report({info: msg})
     end
 
     def test_report_with_hash_res_error
-      @interface.stubs(:print).with(msg)
+      @interface.expects(:print).with(msg)
       @interface.report({error: msg})
     end
 
